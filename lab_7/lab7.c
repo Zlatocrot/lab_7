@@ -20,7 +20,7 @@ int prac1_2(char c)
         a = 1;
         break;
     default:
-        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= 'а' && c <= 'я') || (c >= 'А' && c <= 'Я'))
+        if ((c >= 'a' && c <= 'z') ||  (c >= 'A' && c <= 'Z') || (c >= 'а' && c <= 'я') || (c >= 'А' && c <= 'Я'))
         {
             a = 2;
         }
@@ -32,40 +32,40 @@ int prac1_2(char c)
     return a;
 }
 
-int prac2(float x, char c, float y)
+double prac2(float x, char c, float y)
 {
-    int a;
-    switch (c) 
+    double a = 0;
+    switch (c)
     {
     case '+':
-        a = 1;
+        a = x + y;
         break;
 
     case '-':
-        a = 2;
+        a = x - y;
         break;
 
     case '*':
-        a = 3;
+        a = x * y;
         break;
 
     case '/':
-        if (y == 0.0f) 
+        if (y == 0.0f)
         {
-            a = 4;
+            printf("Ошибка: деление на ноль!\n");
         }
-        else 
+        else
         {
-            a = 5;
+            a = x / y;
         }
         break;
 
     case '^':
-        a = 6;
+        a = pow(x, y);
         break;
 
     default:
-        a = 7;
+        printf("Ошибка: неизвестная операция %c!\n", c);
         break;
     }
     return a;
@@ -74,14 +74,14 @@ int prac2(float x, char c, float y)
 int prac3(int months)
 {
     int a;
-    if (months < 0) 
+    if (months < 0)
     {
-        a = 1;
+        return a = 1;
     }
 
-    if (months >= 0 && months < 2) 
+    if (months >= 0 && months < 2)
     {
-        a = 2;
+        return a = 2;
     }
 
     int year = months / 12;
@@ -147,34 +147,11 @@ int main()
 
     printf("\nЗадание 2\n\n");
     char cc;
+    double res;
     printf("Введите выражение в формате (например: 5+3 или 2^3): ");
     scanf("%f %c %f", &x, &cc, &y);
-    switch (prac2(x, cc, y))
-    {
-    case 1:
-        printf("= %.6f\n", x + y);
-        break;
-
-    case 2:
-        printf("= %.6f\n", x - y);
-        break;
-
-    case 3:
-        printf("= %.6f\n", x * y);
-        break;
-    case 4:
-        printf("Ошибка: деление на ноль!\n");
-        break;
-    case 5:
-        printf("= %.6f\n", x / y);
-        break;
-    case 6:
-        printf("= %.6f\n", pow(x, y));
-        break;
-    case 7:
-        printf("Ошибка: неизвестная операция %c!\n", c);
-        break;
-    }
+    res = prac2(x, cc, y);
+    printf("Результатом выражения %.6f %c %.6f является %.6lf", x, cc, y, res);
 
 
     printf("\nЗадание 3\n\n");
